@@ -9,33 +9,31 @@ O sistema deve conter um menu com no mínimo as seguintes opções
 0 - Sair. */
 
 public class controleFinanceiro {
-    Venda[] vendas = new Venda[1000];
-    int quantidadeVendas = 0;
+    Venda[] vendas = new Venda [1000];
+    int contadorVendas = 0;
 
-    final double LIMITE_DIARIO = 500.0;
-    final double MULTA_POR_REAL = 0.10;
+    final double LIMITE_VENDA = 500.0;
+    final double MULTA = 0.10;
 
-    public void cadastrarVenda(double valor, int dia, int mes, int ano) {
-        vendas[quantidadeVendas] = new Venda(valor, dia, mes, ano);
-        quantidadeVendas++;
+    public void cadastrarVenda(double valor, int dia, int mes, int ano){
+        vendas[contadorVendas] = new Venda(valor, dia, mes, ano);
+        contadorVendas++;
     }
 
-    public void consultarMulta(int mesConsulta, int anoConsulta) {
-        double excessoTotal = 0;
-        double multaTotal = 0;
+    public void consultaImposto(int mesConsulta, int anoConsulta){
+        double E = 0;
+        double M = 0;
 
-        for (int i = 0; i < quantidadeVendas; i++) {
+        for(int i = 0; i < contadorVendas; i++){
             Venda v = vendas[i];
-            if (v.mes == mesConsulta && v.ano == anoConsulta) {
-                if (v.valor > LIMITE_DIARIO) {
-                    double excesso = v.valor - LIMITE_DIARIO;
-                    excessoTotal += excesso;
-                    multaTotal += excesso * MULTA_POR_REAL;
+            if(v.mes == mesConsulta && v.ano == anoConsulta){
+                if(v.valor > LIMITE_VENDA){
+                    E = v.valor - LIMITE_VENDA;
+                    M = E * MULTA;
                 }
             }
         }
-
-        System.out.printf("Excesso (E) no mês: R$ %.2f%n", excessoTotal);
-        System.out.printf("Multa (M) a pagar no mês: R$ %.2f%n", multaTotal);
+        System.out.printf("O excesso no mês: %.2f%n", E);
+        System.out.printf("Valor da multa: %.2f%n", M);
     }
 }
