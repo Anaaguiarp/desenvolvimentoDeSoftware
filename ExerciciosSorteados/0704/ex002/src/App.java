@@ -19,5 +19,7 @@ public class App {
         double valorTotal = boleto.calculaTotal();
 
         System.out.printf("O valor total a pagar é: %.2f%n", valorTotal);
+
+        sc.close();
     }
 }
