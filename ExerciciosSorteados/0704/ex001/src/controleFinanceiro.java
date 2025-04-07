@@ -9,7 +9,7 @@ O sistema deve conter um menu com no mínimo as seguintes opções
 0 - Sair. */
 
 public class controleFinanceiro {
-    Venda[] vendas = new Venda[1000]; // um vetor grande para simplificar (não é arraylist)
+    Venda[] vendas = new Venda[1000];
     int quantidadeVendas = 0;
 
     final double LIMITE_DIARIO = 500.0;
