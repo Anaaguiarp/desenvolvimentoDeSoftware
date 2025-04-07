@@ -12,53 +12,44 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class App {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         Locale.setDefault(Locale.US);
         Scanner sc = new Scanner(System.in);
         controleFinanceiro controle = new controleFinanceiro();
+        int opc;
+        
+        do{
+            System.out.println("1 - Cadastro de Vendas\n2 - Consulta de Imposto a pagar no mês\n0 - Sair");
+            opc = sc.nextInt();
+        switch (opc) {   
+            case 1:
+                System.out.println("Informe o valor da venda: ");
+                double valor = sc.nextDouble();
+                System.out.println("Informe o dia da venda: ");
+                int dia = sc.nextInt();
+                System.out.println("Informe o mês da venda: ");
+                int mes = sc.nextInt();
+                System.out.println("Informe o ano da venda: ");
+                int ano = sc.nextInt();
 
-        int opcao;
+                controle.cadastrarVenda(valor, dia, mes, ano);
+                break;
+            case 2:
+                System.out.println("Informe o mês que deseja consultar: ");
+                int mesConsulta = sc.nextInt();
+                System.out.println("Informe o ano que deseja consultar: ");
+                int anoConsulta = sc.nextInt();
 
-        do {
-            System.out.println("\nMenu:");
-            System.out.println("1 - Cadastro de vendas");
-            System.out.println("2 - Consulta de imposto a pagar no mês");
-            System.out.println("0 - Sair");
-            System.out.print("Escolha uma opção: ");
-            opcao = sc.nextInt();
-
-            switch (opcao) {
-                case 1:
-                    System.out.print("Digite o valor da venda: ");
-                    double valor = sc.nextDouble();
-                    System.out.print("Digite o dia da venda: ");
-                    int dia = sc.nextInt();
-                    System.out.print("Digite o mês da venda: ");
-                    int mes = sc.nextInt();
-                    System.out.print("Digite o ano da venda: ");
-                    int ano = sc.nextInt();
-
-                    controle.cadastrarVenda(valor, dia, mes, ano);
-                    break;
-
-                case 2:
-                    System.out.print("Digite o mês para consulta: ");
-                    int mesConsulta = sc.nextInt();
-                    System.out.print("Digite o ano para consulta: ");
-                    int anoConsulta = sc.nextInt();
-
-                    controle.consultarMulta(mesConsulta, anoConsulta);
-                    break;
-
-                case 0:
-                    System.out.println("Encerrando o programa...");
-                    break;
-
-                default:
-                    System.out.println("Opção inválida. Tente novamente.");
-            }
-        } while (opcao != 0);
-
+                controle.consultaImposto(mesConsulta, anoConsulta);
+                break;
+            case 0:
+                System.out.println("Saindo...");
+                break;
+            default:
+                System.out.println("Opção inválida!");
+                break;
+        }
+        } while(opc != 0);
         sc.close();
-    }
+    }   
 }
