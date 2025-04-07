@@ -10,17 +10,14 @@ public class App {
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("Digite o valor do boleto: ");
+        System.out.println("Informe o valor do boleto: ");
         double valor = sc.nextDouble();
-
-        System.out.print("Digite os dias de atraso: ");
+        System.out.println("Informe a quantidade de dias de atraso: ");
         int dias = sc.nextInt();
 
         Boleto boleto = new Boleto(valor, dias);
-        double valorTotal = boleto.calcularValorTotal();
+        double valorTotal = boleto.calculaTotal();
 
-        System.out.printf("O valor total a pagar é: R$ %.2f\n", valorTotal);
-
-        sc.close();
+        System.out.printf("O valor total a pagar é: %.2f%n", valorTotal);
     }
 }
