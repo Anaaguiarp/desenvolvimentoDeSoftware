@@ -10,27 +10,36 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
+        Pesquisa pesquisa = new Pesquisa();
         int opc;
-        System.out.println("1. A média de salário do grupo;\r\n2. Maior e menor idade do grupo;\r\n3. Quantidade de habitantes do gênero masculino com salário até R$ 1000,00;\r\n4. Quantidade de habitantes do gênero feminino;\r\nDigite 0 para sair");
-        opc = sc.nextInt();
 
+        
         do{
-            switch (opc) {
+            System.out.println("1 - Registrar Habitante\n2 - Consultar Relatório\n0 - Sair");
+            opc = sc.nextInt();
+            switch (opc){
                 case 1:
-                    
+                System.out.println("Informe a idade: ");
+                int idade = sc.nextInt();
+                System.out.println("Informe o salário: ");
+                double salario = sc.nextDouble();
+                System.out.println("Informe o genêro com 'M' para masculino e 'F' para feminino: ");
+                String genero = sc.next();
+
+                Habitante h1 = new Habitante(idade, salario, genero);
+                pesquisa.registrarHabitante(h1);
                     break;
                 case 2:
-
+                pesquisa.mostrarRelatorio();
                     break;
-                case 3:
-
-                    break;
-                case 4:
-
+                case 0:
+                System.out.println("Saindo...");
                     break;
                 default:
-                    System.out.println("Opção inválida, saindo...");
+                System.out.println("Opção inválida!");
+                break;
             }
         }while(opc != 0);
+        sc.close();
     }
 }
